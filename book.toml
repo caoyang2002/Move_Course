@@ -9,10 +9,10 @@ src = "src"
 
 [output.html]
 additional-css = ["theme/style.css"]
-additional-js = ["assets/custom.js", "assets/bigPicture.js"]
+additional-js = ["assets/toggle.js", "assets/custom.js", "assets/bigPicture.js"]
 git-repository-url = "https://github.com/caoyang2002/Move_Course"
 
-edit-url-template = "https://github.com/sunface/rust-course/edit/main/{path}"
+edit-url-template = "https://github.com/caoyang2002/Move_Course/edit/main/{path}"
 
 [output.html.playground]
 editable = true

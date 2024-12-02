@@ -133,3 +133,40 @@ code.editable, .ace_scroller {
 .chapter li .md-viewed {
     color: #777;
 }
+
+
+
+
+/* ------------------------ */
+
+.chapter-item {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.chapter-item .toggle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.chapter-item .toggle div {
+  transition: transform 0.3s ease;
+}
+
+/* 展开状态的样式 */
+.chapter-item.expanded > .toggle div {
+  transform: rotate(90deg);
+}
+
+.chapter-item.expanded > a.active {
+  font-weight: bold;
+}
+
+/* 确保子列表的过渡效果 */
+.chapter li > ol {
+  margin-left: 20px;
+  transition: all 0.3s ease;
+}

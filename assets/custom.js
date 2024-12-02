@@ -1,27 +1,31 @@
 var initAll = function () {
-    var path = window.location.pathname;
-    if (path.endsWith("/print.html")) {
-        return;
-    }
+  var path = window.location.pathname;
+  if (path.endsWith("/print.html")) {
+      return;
+  }
 
-    var images = document.querySelectorAll("main img")
-    Array.prototype.forEach.call(images, function (img) {
-        img.addEventListener("click", function () {
-            BigPicture({
-                el: img,
-            });
-        });
-    });
+  var images = document.querySelectorAll("main img")
+  Array.prototype.forEach.call(images, function (img) {
+      img.addEventListener("click", function () {
+          BigPicture({
+              el: img,
+          });
+      });
+  });
 
-    // Un-active everything when you click it
-    Array.prototype.forEach.call(document.getElementsByClassName("pagetoc")[0].children, function (el) {
-        el.addEventHandler("click", function () {
-            Array.prototype.forEach.call(document.getElementsByClassName("pagetoc")[0].children, function (el) {
-                el.classList.remove("active");
-            });
-            el.classList.add("active");
-        });
-    });
+     // Un-active everything when you click it
+     var pagetocElements = document.getElementsByClassName("pagetoc");
+     if (pagetocElements.length > 0) {
+         Array.prototype.forEach.call(pagetocElements[0].children, function (el) {
+             // 修复这里：改用正确的 addEventListener
+             el.addEventListener("click", function () {
+                 Array.prototype.forEach.call(pagetocElements[0].children, function (el) {
+                     el.classList.remove("active");
+                 });
+                 el.classList.add("active");
+             });
+         });
+     }
 
     var updateFunction = function () {
         var id = null;
@@ -149,8 +153,7 @@ var initAll = function () {
     // script.setAttribute("data-lang", lang);
     // 预先加载评论会更好，这样用户读到那边时，评论就加载好了
     // script.setAttribute("data-loading", "lazy");
-    document.getElementById("giscus-container").appendChild(script);
-
+    // document.getElementById("giscus-container").appendChild(script);
 
 
 };
