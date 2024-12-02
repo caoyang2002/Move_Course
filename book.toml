@@ -1,16 +1,17 @@
 [rust]
-edition = "2021"   #在线运行用2021版本的
+edition = "2021" #在线运行用2021版本的
 
 [book]
-authors = ["sunface"]
+authors = ["simons"]
 language = "zh-CN"
-title = "Rust语言圣经(Rust Course)"
+title = "Move 耳语"
 src = "src"
 
 [output.html]
 additional-css = ["theme/style.css"]
 additional-js = ["assets/custom.js", "assets/bigPicture.js"]
-git-repository-url = "https://github.com/sunface/rust-course"
+git-repository-url = "https://github.com/caoyang2002/Move_Course"
+
 edit-url-template = "https://github.com/sunface/rust-course/edit/main/{path}"
 
 [output.html.playground]

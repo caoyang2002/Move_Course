@@ -3,7 +3,21 @@
 <div align="center">
     <img src="https://github.com/sunface/rust-course/blob/main/assets/banner.jpg?raw=true">
 </div>
-   
+
+# run
+
+```bash
+mdbook server --open
+```
+
+# build
+```bash
+git clone https://github.com/sunface/rust-course.git
+cd rust-course
+cargo install mdbook
+mdbook build
+```
+
 <div align="center">
 
 [![studyrut](https://img.shields.io/badge/RustCn社区-orange)](https://github.com/rustlang-cn) [![Stars Count](https://img.shields.io/github/stars/sunface/rust-course?style=flat)](https://github.com/sunface/rust-course/stargazers)
@@ -130,14 +144,3 @@
 - 详细清单参见 [这里](./assets/writing-material/books.md)
 
 因为它们绝大部分是支持 APACHE + MIT 双协议的，因此我们选择了遵循其中的 MIT 协议，并在这里统一对借鉴的书籍进行说明。
-
-## 社区 & 读者交流
-
-- 知乎: [孙飞 Sunface](https://www.zhihu.com/people/iSunface)
-- RustCn 微信交流 2 群：<img src="https://github.com/sunface/rust-course/assets/7036754/a84ec7e5-30b1-48da-9352-95503aa61a8f" width="200" /> 
-
-
-
-- 微信公众号: 扫描下面的二维码关注公众号 `Rust语言中文网`
-
-<img src="https://github.com/sunface/rust-course/blob/main/assets/studyrust公众号.png?raw=true" />
