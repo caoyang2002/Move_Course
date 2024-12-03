@@ -1,178 +1,179 @@
-# 安装 Rust
+# 安装 Aptos CLI
 
-`rustup` 是 Rust 的安装程序，也是它的版本管理程序。
-强烈建议使用 `rustup` 来安装 Rust，当然如果你有异心，请寻找其它安装方式，然后再从下一节开始阅读。
 
-> haha，开个玩笑。读者乃大大，怎么能弃之不顾。
+[Aptos CLI 官方安装教程](https://aptos.dev/en/build/cli)
+
+> 不同于 python 或者 rust 语言，Move 语言并没有特定的命令行工具，但是每个公链都会依据自己的需求重新开发一个特定的 Move 语言，例如 Sui 使用的是 [sui](https://docs.sui.io/guides/developer/getting-started/sui-install)，rooch 使用的是 [rooch](https://rooch.network/zh-CN/build/getting-started/installation) movement 使用的是 [movement](https://docs.movementnetwork.xyz/devs/movementcli#install-movement-cli) ，
+
+# 一、Mac
+
+> 如果没有安装 `brew `执行以下代码
 >
-> 注意：如果你不想用或者不能用 rustup，请参见 [Rust 其它安装方法](https://forge.rust-lang.org/infra/other-installation-methods.html#other-rust-installation-methods)。
+> ```bash
+> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+> ```
 
-至于版本，现在 Rust 稳定版特性越来越全了，因此下载最新稳定版本即可。由于你用的 Rust 版本可能跟本书写作时不一样，一些编译错误和警告可能也会有所不同。
+ 
 
-## 在 Linux 或 macOS 上安装 `rustup`
-
-打开终端并输入下面命令：
-
-```console
-$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
-```
-
-这个命令将下载一个脚本并开始安装 `rustup` 工具，此工具将安装 Rust 的最新稳定版本。可能会提示你输入管理员密码。
-
-如果安装成功，将出现下面这行：
-
-```text
-Rust is installed now. Great!
-```
-
-OK，这样就已经完成 Rust 安装啦。
-
-### 安装 C 语言编译器：（非必需）
-
-Rust 对运行环境的依赖和 Go 语言很像，几乎所有环境都可以无需安装任何依赖直接运行。但是，Rust 会依赖 `libc` 和链接器 `linker`。所以如果遇到了提示链接器无法执行的错误，你需要再手动安装一个 C 语言编译器：
-
-**macOS 下：**
-
-```console
-$ xcode-select --install
-```
-
-**Linux 下：**
-
-Linux 用户一般应按照相应发行版的文档来安装 `GCC` 或 `Clang`。
-
-例如，如果你使用 Ubuntu，则可安装 `build-essential`。
-
-## 在 Windows 上安装 `rustup`
-
-Windows 上安装 Rust 需要有 `C++` 环境，以下为安装的两种方式：
-
-**1. `x86_64-pc-windows-msvc`（官方推荐）**
-
-先安装 [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/zh-hans/visual-cpp-build-tools/)，勾选安装 C++ 环境即可。安装时可自行修改缓存路径与安装路径，避免占用过多 C 盘空间。安装完成后，Rust 所需的 msvc 命令行程序需要手动添加到环境变量中，否则安装 Rust 时 `rustup-init` 会提示未安装 Microsoft C++ Build Tools，其位于：`%Visual Studio 安装位置%\VC\Tools\MSVC\%version%\bin\Hostx64\x64`（请自行替换其中的 %Visual Studio 安装位置%、%version% 字段）下。
-
-如果你不想这么做，可以选择安装 Microsoft C++ Build Tools 新增的“定制”终端 `Developer Command Prompt for %Visual Studio version%` 或 `Developer PowerShell for %Visual Studio version%`，在其中运行 `rustup-init.exe`。
-
-准备好 C++ 环境后开始安装 Rust：
-
-在 [RUSTUP-INIT](https://www.rust-lang.org/learn/get-started) 下载系统相对应的 Rust 安装程序，一路默认即可。
-
-```shell
-PS C:\Users\Hehongyuan> rustup-init.exe
-......
-Current installation options:
-
-   default host triple: x86_64-pc-windows-msvc
-     default toolchain: stable (default)
-               profile: default
-  modify PATH variable: yes
-
-1) Proceed with installation (default)
-2) Customize installation
-3) Cancel installation
-```
-
-**2、`x86_64-pc-windows-gnu`**
-
-相比于 MSVC 版本来说，GNU 版本具有更轻量，更靠近 Linux 的优势。
-
-首先，根据 [MSYS2 官网](https://www.msys2.org/) 配置 MSYS。
-
-若您觉得下载太慢，可以试试由 [Caviar-X](https://github.com/Caviar-X) 提供的 [代理](https://github.pigeons.icu/msys2/msys2-installer/releases/download/2021-11-30/msys2-x86_64-20211130.exe)。
-
-在安装 `mingw-toolchain` 后，请将 `%MSYS 安装路径%\mingw64\bin` 添加到系统变量 `PATH` 中。
-
-配置好后，在 MSYS 中输入下面的命令来安装 rustup。
+1. 检查是否安装了 brew
 
 ```bash
-$ curl https://sh.rustup.rs -sSf | sh
+brew --version
+# Homebrew 4.4.3  
+# 如果没有安装就执行上方引用块中的命令
 ```
 
-之后，根据以下输出进行配置。
+2. 更新 Homebrew 自身以及本地存储库中的软件包信息
 
-```text
-Current installation options:
+```bash
+ brew update
+```
 
-   default host triple: x86_64-pc-windows-msvc
-     default toolchain: stable (default)
-               profile: default
-  modify PATH variable: yes
+3. 安装 aptos
 
-1) Proceed with installation (default)
-2) Customize installation
-3) Cancel installation
->2
+```bash
+ brew install aptos
+```
 
-I'm going to ask you the value of each of these installation options.
-You may simply press the Enter key to leave unchanged.
+4. 检查是否安装成功
 
-Default host triple? [x86_64-pc-windows-msvc]
-x86_64-pc-windows-gnu
+```bash
+ aptos --version
+ # aptos 4.2.3
+```
 
-Default toolchain? (stable/beta/nightly/none) [stable]
-stable
+5. 更新 aptos
 
-Profile (which tools and data to install)? (minimal/default/complete) [default]
-complete
+```bash
+brew update
+brew upgrade aptos
+```
 
-Modify PATH variable? (Y/n)
-Y
 
-Current installation options:
+# 二、Windows
 
-   default host triple: x86_64-pc-windows-gnu
-     default toolchain: stable
-               profile: complete
-  modify PATH variable: yes
+## 1. 二进制文件安装
 
-1) Proceed with installation (default)
-2) Customize installation
-3) Cancel installation
+https://github.com/aptos-labs/aptos-core/releases
+
+ [aptos-cli-v3.1.0](https://github.com/aptos-labs/aptos-core/releases/tag/aptos-cli-v3.1.0)
+
+
+
+## 2. 使用脚本安装
+
+
+- 方法一
+
+```bash
+iwr "https://aptos.dev/scripts/install_cli.py" -useb | Select-Object -ExpandProperty Content | python3
+```
+
+- 方法二
+
+```bash
+iex (iwr "https://gist.githubusercontent.com/WGB5445/fb268ade52ea717c02bfb253e09c7ef5/raw" ).Content
+```
+
+> 可能的问题
 >
+> ```bash
+> ModuleNotFoundError: No module named packaging
+> ```
+> 你可以通过运行 `pip3 install packaging` 来安装 packaging 模块，然后重复安装步骤。
+>
+> ```cmd
+> aptos : 无法将“aptos”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确，
+> 然后再试一次。
+> 所在位置 行:1 字符: 1
+> ```
+>
+> 可选的解决办法：
+>
+> - 将 `aptos.exe` 添加到  `C:\Windos\System32` 目录下
+>
+> - 添加`aptos.exe`所在的目录到环境变量（未测试）
+>
+>     ```cmd
+>     setx PATH "%PATH%;C:\Users\<your_account_name>\.aptoscli\bin"
+>     ```
+>
+>     
+
+
+
+验证是否安装成功：
+
+```cmd
+aptos --version
 ```
 
-再之后，按下 1，等待。完成后，您就已经安装了 Rust 和 `rustup`。
+更新
 
-## 更新
-要更新 Rust，在终端执行以下命令即可更新：
+```cmd
+aptos update
+```
+
+
+
+# 三、Linux
+
+## 1. 使用 python 脚本安装
 
 ```bash
-$ rustup update
+python3 --version
+# 确保您安装了Python 3.6+。
 ```
 
-## 卸载
-
-要卸载 Rust 和 `rustup`，在终端执行以下命令即可卸载：
+- 方法一
 
 ```bash
-$ rustup self uninstall
+curl -fsSL "https://aptos.dev/scripts/install_cli.py" | python3
 ```
 
-## 检查安装是否成功
-
-检查是否正确安装了 Rust，可打开终端并输入下面这行，此时能看到最新发布的稳定版本的版本号、提交哈希值和提交日期：
+- 方法二
 
 ```bash
-$ rustc -V
-rustc 1.56.1 (59eed8a2a 2021-11-01)
-
-$ cargo -V
-cargo 1.57.0 (b2e52d7ca 2021-10-21)
+wget -qO- "https://aptos.dev/scripts/install_cli.py" | python3
 ```
 
-> 注：若发现版本号不同，以您的版本号为准
+> 如果你收到错误消息 `Couldn't find distutils or packaging. We cannot check the current version of the CLI. We will install the latest version.`，你可以通过运行 `pip3 install packaging` 来修复，然后重复安装步骤。
+>
 
-恭喜，你已成功安装 Rust！
+（可选）将Aptos CLI添加到PATH中的文件夹中，或直接将其添加到PATH中可能会有所帮助。将文件夹添加到PATH的步骤取决于shell。
 
-如果没看到此信息：
+您可以运行`echo $SHELL`来打印机器的默认shell，然后在谷歌上搜索特定步骤将该shell的PATH文件夹添加到您的PATH中。
 
-1. 如果你使用的是 Windows，请检查 Rust 或 `%USERPROFILE%\.cargo\bin` 是否在 `%PATH%` 系统变量中。
-2. 如果你使用的是 Windows 下的 Linux 子系统，请关闭并重新打开终端，再次执行以上命令。
+## 2. 二进制文件安装
 
-如果都正确，但 Rust 仍然无法正常工作，那么你可以在很多地方获得帮助。最简单的是**加入 Rust 编程学院这个大家庭，QQ 群：1009730433**.
+1. 转到[Aptos CLI发布页面](https://github.com/aptos-labs/aptos-core/releases?q=cli&expanded=true)。
 
-## 本地文档
+2. 单击最新版本的“资产”可扩展菜单，以查看预编译的二进制文件。
 
-安装 Rust 的同时也会在本地安装一个文档服务，方便我们离线阅读：运行 `rustup doc` 让浏览器打开本地文档。
+3. 下载Linux的zip文件。
 
-每当遇到标准库提供的类型或函数不知道怎么用时，都可以在 API 文档中查找到！具体参见 [在标准库寻找你想要的内容](https://course.rs/std/search.html)。
+    1. 它将有一个名称：`aptos-cli-<version>-Ubuntu-x86_64.zip`。
+    2. 确保您为您的计算机架构选择了正确的zip文件。
+    3. 下载时，您可能不得不忽略这是一个可疑文件的警告。
+
+4. 解压缩下载的文件。
+
+5. 将提取的Aptos二进制文件移动到您的首选文件夹中。
+
+6. 打开一个终端并导航到您的首选文件夹。
+
+7. 通过运行`chmod +x ~/aptos`使`~/aptos`成为可执行文件。
+
+8. 通过运行
+
+    ```bash
+    ~/aptos help
+    ```
+
+    验证此已安装版本是否有效。
+
+    1. 您应该看到如何使用所有CLI命令的说明。当您试图了解如何使用特定命令时，这些在未来可能会有所帮助。
+
+9. （可选）将Aptos CLI添加到PATH中的文件夹中，或直接将其添加到PATH中可能会有所帮助。将文件夹添加到PATH的步骤取决于shell。
+
+    1. 您可以运行`echo $SHELL`来打印机器的默认shell，然后在谷歌上搜索特定步骤将该shell的PATH文件夹添加到您的PATH中。

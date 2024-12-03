@@ -10,6 +10,21 @@
 mdbook server --open
 ```
 
+https://highlightjs.readthedocs.io/en/latest/readme.html
+
+https://highlightjs.org/examples
+
+https://github.com/rust-lang/mdBook/blob/4c951d530d7cf225fcca18d6e9146b28bf8dcf10/src/theme/book.js#L127
+
+https://github.com/rust-lang/mdBook/issues/1453
+
+https://hack.movementlabs.xyz/ch02-03-hello-move.html
+
+https://rust-lang.github.io/mdBook/format/mdbook.html
+
+https://course.rs/too-many-lists/do-we-need-it.html
+
+
 # build
 ```bash
 git clone https://github.com/sunface/rust-course.git

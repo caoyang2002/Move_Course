@@ -1,52 +1,154 @@
-# Rust 基本概念
+# 浅尝 Move
 
-从现在开始，我们正式踏入了 Rust 大陆，这片广袤而神秘的世界，在这个世界中，将接触到很多之前都没有听过的概念：
+> 建议使用 Linux & Mac
 
-- 所有权、借用、生命周期
-- 宏编程
-- 模式匹配
+# 写一个 hello world 程序
 
-类似的还有很多，不过不用怕，引用武林外传一句话：咱上面有人。有本书在，一切虚妄终将烟消云散。
+1. 创建一个目录
 
-本章主要介绍 Rust 的基础语法、数据类型、项目结构等，学完本章，你将对 Rust 代码有一个清晰、完整的认识。
+    ```bash
+    mkdir hello_world
+    ```
 
-开始之前先通过一段代码来简单浏览下 Rust 的语法：
+2. 初始化项目结构为 move 结构
 
-```rust
-// Rust 程序入口函数，跟其它语言一样，都是 main，该函数目前无返回值
-fn main() {
-    // 使用let来声明变量，进行绑定，a是不可变的
-    // 此处没有指定a的类型，编译器会默认根据a的值为a推断类型：i32，有符号32位整数
-    // 语句的末尾必须以分号结尾
-    let a = 10;
-    // 主动指定b的类型为i32
-    let b: i32 = 20;
-    // 这里有两点值得注意：
-    // 1. 可以在数值中带上类型:30i32表示数值是30，类型是i32
-    // 2. c是可变的，mut是mutable的缩写
-    let mut c = 30i32;
-    // 还能在数值和类型中间添加一个下划线，让可读性更好
-    let d = 30_i32;
-    // 跟其它语言一样，可以使用一个函数的返回值来作为另一个函数的参数
-    let e = add(add(a, b), add(c, d));
+    ```bash
+    aptos move init --name hello_move
+    #  --name <NAME>       Name of the new Move package
+    # 这里的 --name 会作为配置文件中的 name 名称
+    ```
 
-    // println!是宏调用，看起来像是函数但是它返回的是宏定义的代码块
-    // 该函数将指定的格式化字符串输出到标准输出中(控制台)
-    // {}是占位符，在具体执行过程中，会把e的值代入进来
-    println!("( a + b ) + ( c + d ) = {}", e);
-}
+    > - 返回的结果
+    >
+    > ```json
+    > {
+    > "Result": "Success"
+    > }
+    > ```
+    > - Move 程序的配置文件
+    > 
+    > ```toml
+    > [package]
+    > name = "hello_move"
+    > version = "1.0.0"
+    > authors = []
+    > 
+    > [addresses]
+    > 
+    > [dev-addresses]
+    > 
+    > [dependencies.AptosFramework]
+    > git = "https://github.com/aptos-labs/aptos-core.git"
+    > rev = "mainnet"
+    > subdir = "aptos-move/framework/aptos-framework"
+    > 
+    > [dev-dependencies]
+    > ```
 
-// 定义一个函数，输入两个i32类型的32位有符号整数，返回它们的和
-fn add(i: i32, j: i32) -> i32 {
-    // 返回相加值，这里可以省略return
-    i + j
-}
-```
+3. 初始化 aptos 账户
 
-> 注意
-> 在上面的 `add` 函数中，不要为 `i+j` 添加 `;`，这会改变语法导致函数返回 `()` 而不是 `i32`，具体参见[语句和表达式](https://course.rs/basic/base-type/statement-expression.html)。
+    ```bash
+    aptos init --network testnet # 使用测试网
+    ```
 
-有几点可以留意下：
+    >- 选择
+    >
+    >```bash
+    >caoyang@cccy hello_world % aptos init --network testnet
+    >
+    >Configuring for profile default
+    >Configuring for network Testnet
+    >Enter your private key as a hex literal (0x...) [Current: None | No input: Generate new key (or keep one if present)]
+    ># 按回车键
+    >No key given, generating key...
+    >
+    >Account 0x869babd17f0891d535f25fb6e407cc3dc53e2744538ab959f04b799bc83a59d9 doesn't exist, creating it and funding it with 100000000 Octas
+    >Account 0x869babd17f0891d535f25fb6e407cc3dc53e2744538ab959f04b799bc83a59d9 funded successfully
+    >
+    >---
+    >Aptos CLI is now set up for account 0x869babd17f0891d535f25fb6e407cc3dc53e2744538ab959f04b799bc83a59d9 as profile default!  Run `aptos --help` for more information about commands
+    >```
+    >
+    >- 返回结果
+    >
+    >```json
+    >{
+    >  "Result": "Success"
+    >}
+    >```
 
-- 字符串使用双引号 `""` 而不是单引号 `''`，Rust 中单引号是留给单个字符类型（`char`）使用的
-- Rust 使用 `{}` 来作为格式化输出占位符，其它语言可能使用的是 `%s`，`%d`，`%p` 等，由于 `println!` 会自动推导出具体的类型，因此无需手动指定
+4. 写入程序代码
+
+    ```bash
+    cd sources 
+    # 可以使用任何编辑软件写入
+    # vim hello_move.move 
+    ```
+
+    - 写入
+
+        ```rust
+        module 0x42::hello {
+            #[test_only]
+            use std::string;
+            #[test_only]
+            use std::debug::print;
+        
+            #[test]
+            fun test() {
+                let hello = string::utf8(b"hello_world");
+                print(&hello);
+            }
+        }
+        ```
+    
+    - 测试
+      
+        > ```json
+        > caoyang@cccy hello_world % aptos move test
+        > INCLUDING DEPENDENCY AptosFramework
+        > INCLUDING DEPENDENCY AptosStdlib
+        > INCLUDING DEPENDENCY MoveStdlib
+        > BUILDING hello_move
+        > Running Move unit tests
+        > [debug] "hello_world"
+        > [ PASS    ] 0x42::hello::test
+        > Test result: OK. Total tests: 1; passed: 1; failed: 0
+        > {
+        >   "Result": "Success"
+        > }
+        > ```
+
+
+
+
+
+> 可能遇到的问题：
+> 
+>- 网络问题
+>
+> ```json
+>caoyang@cccy sources % aptos move test
+> {
+>   "Error": "Unexpected error: Failed to run tests: Unable to resolve packages for package 'hello_move': While resolving dependency 'AptosFramework' in package 'hello_move': Failed to fetch to latest Git state for package 'AptosFramework', to skip set --skip-fetch-latest-git-deps | Exit status: exit status: 128"
+> }
+> ```
+> 
+> 解决方法：
+>
+> 1. 切换为能访问 GitHub 的网络
+>
+>     自行修改
+>
+> 2. 修改 `Move.toml` 中的 GitHub 官方地址为 Gitee 地址
+>
+>     ```toml
+>    [dependencies.AptosFramework]
+>     # git = "https://github.com/aptos-labs/aptos-core.git"
+>     git = "https://gitee.com/WGB5445/aptos-core.git"
+>     rev = "mainnet"
+>     subdir = "aptos-move/framework/aptos-framework"
+>    ```
+
+
+

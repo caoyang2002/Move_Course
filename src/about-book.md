@@ -1,40 +1,42 @@
-<img src="https://github.com/sunface/rust-course/blob/main/assets/banner.jpg?raw=true" />
+<!-- <img src="https://github.com/sunface/rust-course/blob/main/assets/banner.jpg?raw=true" /> -->
 
-Rust 语言真的好：连续八年成为全世界最受欢迎的语言、没有 GC 也无需手动内存管理、性能比肩 C++/C 还能直接调用它们的代码、安全性极高 - 总有公司说使用 Rust 后以前的大部分 bug 都将自动消失、全世界最好的包管理工具 Cargo 等等。但...
+![move](../img/move_language.png)
 
-**有人说: "Rust 太难了，学了也没用"**
+Move 是一门为可编程资源而生的语言，它的主要目的是为了创建一种新的编程范式，这种范式可以让我们在编写程序时，更加关注资源的管理和安全性。主要的应用场景是在区块链中，用于创建和管理智能合约。
 
-对于后面一句话我们持保留意见，如果以找工作为标准，那国内环境确实还不好，但如果你想成为更优秀的程序员或者是玩转开源，那 Rust 还真是不错的选择，具体原因见[下一章](https://course.rs/into-rust.html)。
 
-至于 Rust 难学，那正是本书要解决的问题，如果看完后，你觉得没有学会 Rust，可以找我们退款，哦抱歉，这是开源书，那就退 🌟 吧 :)
+**Move 灵魂拷问：Move 太难了**
 
-如果看到这里，大家觉得这本书的介绍并没有吸引到你，不要立即放弃，强烈建议读一下[进入 Rust 编程世界](https://course.rs/into-rust.html)，那里会有不一样的精彩。
+其实，Move 语言本身并不难，但是它背后的编程范式却非常难理解，这也是为什么很多人觉得 Move 语言很难的原因。Move 的基因是 Rust，因此，如果你对 Rust 语言有一定的了解，那么学习 Move 语言就会变得相对容易一些。
+
+但也不是说学 Move 之前一定要学 Rust，因为 Move 语言的设计初衷就是为了降低学习门槛，让更多的人能够参与到区块链的开发中来。
+
+**有人说: "Move 学了没用"**
+
+确实，Move 语言目前的应用场景主要是区块链，但是随着区块链技术的发展，Move 语言的应用场景将会越来越广泛。
+
+## Move 的 Aptos 分支
+
+Diem 是 Facebook 开发的一个开源区块链项目，它使用 Move 语言作为智能合约语言。Diem 的智能合约运行在 Move 虚拟机（Move Virtual Machine，简称 MV）上，但是在2019年，Diem 项目被更名为 Libra，从那时起，Move 被多个区块链项目所采用，包括 Aptos、Sui 等。
+
+本项目基于 Aptos 构建，所以大部分内容都是 Move-Aptos 的语法，但是为了方便大家理解，我会尽量将 Move-Aptos 的语法与 Move-Sui和 Move-Rooch 的语法进行对比，让大家能够更好地理解 Move 语言。
+
 
 ## 配套练习题
 
-对于学习编程而言，读一篇文章不如做几道练习题，此话虽然夸张，但是也不无道理。既然如此，既读书又做练习题，效果会不会更好？再加上练习题是书本的配套呢？ :P
+学习一门语言**最快**的方式是做一个项目，这是我一直坚信的。因此，我计划在本书的每个章节后面，都提供一个配套的练习题，让大家能够在学习的过程中，通过实践来加深对知识的理解。
 
-- [Rust 语言实战](https://github.com/sunface/rust-by-practice), Rust 语言圣经配套习题，支持中英双语，可以在右上角切换
+学习一门语言**最好**的方式是教别人，恐怕我没法让你直接教别人。因此，我也计划在本书的每个章节后面，都提供一个配套的练习题，让大家能够在学习的过程中，通过实践来加深对知识的理解。
 
 ## 创作感悟
 
-截至目前，Rust 语言圣经已写了 170 余章，110 余万字，历经 1000 多个小时，每一个章节都是手动写就，没有任何机翻和质量上的妥协( 相信深入阅读过的读者都能体会到这一点 )。
+我从 24 年 3 月进入区块链，显然我在很多方面并不够专业。早期的时候，我参与了 Aptos AIP 的中文翻译工作，实际上都是 AI 翻译的，我仅仅是用我撇脚的英语进行校对，那段时间让我很好的理解了区块链的工作内容，于是决定深入。
 
-曾经有读者问过 "这么好的书为何要开源，而不是出版?"，原因很简单：**只有完全开源才能完美地呈现出我想要的教学效果**。
-
-总之，Rust 要在国内真正发展起来，必须得有一些追逐梦想的人在做着不计付出的事情，而我希望自己能贡献一份微薄之力。
-
-但是要说完全无欲无求，那也是不可能的，看到项目多了一颗 🌟，那感觉...棒极了，因为它代表了读者的认可和称赞。
-
-你们用指尖绘制的星空，那里繁星点点，每一颗都在鼓励着怀揣着开源梦想的程序员披荆斩棘、不断前行，不夸张的说，没有你们，开源世界就没有星光，自然也就不会有今天的开源盛世。
-
-因此，**我恳请大家，如果觉得书还可以，就在你的指尖星空绘制一颗新的 🌟，指引我们继续砥砺前行**。这个人世间，因善意而美好。
-
-最后，能通过开源在茫茫人海中与大家相识，这感觉真好 :D
+感谢前辈的开源项目，以及诸多大佬的一路支持，让我一个在茫茫人海中与大家相识，这感觉真好，所以本书也将开源，希望与大家共同进步。
 
 ## 🏆 贡献者
 
-非常感谢本教程的[所有贡献者](https://github.com/sunface/rust-course/graphs/contributors)，正是有了你们，才有了现在的高质量 Rust 教程!
+非常感谢本教程的[所有贡献者](https://github.com/sunface/Move_Course/graphs/contributors)，正是有了你们，才有了现在的高质量 Move 教程!
 
 <br />
 
@@ -43,55 +45,12 @@ Rust 语言真的好：连续八年成为全世界最受欢迎的语言、没有
 <table>
     <tr>
         <td align="center">
-            <a href="https://github.com/EluvK">
-                <img src="https://avatars.githubusercontent.com/u/36977935?v=4" width="160px" alt=""/>
-                <br />
-                <sub><b>EluvK</b></sub>
-            </a>
-        </td>
-        <td align="center">
-            <a href="https://github.com/AllanDowney">
-                <img src="https://avatars.githubusercontent.com/u/82752697?v=4?s=100"  width="160px" alt=""/>
-                <br />
-                <sub><b>AllanDowney</b></sub>
-            </a>
-        </td>
-    </tr>
-</table>
-
-<br />
-
-🏅
-
-<table>
-    <tr>
-        <td align="center">
             <a href="https://github.com/JesseAtSZ">
-                <img src="https://avatars.githubusercontent.com/u/35264598?v=4?s=100" width="100px" alt=""/>
+                <img src="https://avatars.githubusercontent.com/u/120587735?v=4" width="100px" alt=""/>
                 <br />
-                <sub><b>JesseAtSZ</b></sub>
-            </a>
-        </td>
-        <td align="center">
-            <a href="https://github.com/Rustln">
-                <img src="https://avatars.githubusercontent.com/u/100085326?v=4?s=100" width="100px" alt=""/>
-                <br />
-                <sub><b>Rustln</b></sub>
-            </a>
-        </td>
-        <td align="center">
-            <a href="https://github.com/1132719438">
-                <img src="https://avatars.githubusercontent.com/u/10138791?v=4?s=100" width="100px" alt=""/>
-                <br />
-                <sub><b>1132719438</b></sub>
-            </a>
-        </td>
-        <td align="center">
-            <a href="https://github.com/zongzi531">
-                <img src="https://avatars.githubusercontent.com/u/22429236?v=4?s=100" width="100px" alt=""/>
-                <br />
-                <sub><b>zongzi531</b></sub>
+                <sub><b>Simons</b></sub>
             </a>
         </td>
     </tr>
 </table>
+🏅
