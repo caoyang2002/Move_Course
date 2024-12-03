@@ -8,7 +8,7 @@
 
 下面的代码展示了几个颇具异域风情的字符：
 
-```rust
+```rust,ignore
 fn main() {
     let c = 'z';
     let z = 'ℤ';
@@ -21,7 +21,7 @@ fn main() {
 
 由于 `Unicode` 都是 4 个字节编码，因此字符类型也是占用 4 个字节：
 
-```rust
+```rust,ignore
 fn main() {
     let x = '中';
     println!("字符'中'占用了{}字节的内存大小",std::mem::size_of_val(&x));
@@ -43,7 +43,7 @@ $ cargo run
 
 Rust 中的布尔类型有两个可能的值：`true` 和 `false`，布尔值占用内存的大小为 `1` 个字节：
 
-```rust
+```rust,ignore
 fn main() {
     let t = true;
 

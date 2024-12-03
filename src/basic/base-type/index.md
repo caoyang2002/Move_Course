@@ -24,7 +24,7 @@ Move 支持六种无符号整数类型：`u8`、`u16`、`u32`、`u64`、`u128`�
 
 ### 示例
 
-```rust
+```move
 script {
   fun example() {
     // literals with explicit annotations;
@@ -226,7 +226,7 @@ script {
 
 ### 3.2.1 示例
 
-```rust
+```rust,ignore,ignore
 script {
   fun example() {
     let a1: address = @0x1; // 简写表示 0x0000000000000000000000000000000000000000000000000000000000000001
@@ -282,14 +282,14 @@ module std::other_module {  // 可以使用命名地址作为命名空间项目�
 
 在这些情况下，`vector` 的类型是推断出来的，要么从元素类型推断，要么从向量的使用情况推断。如果类型无法推断，或者只是为了更清晰，可以明确指定类型：
 
-```rust
+```rust,ignore,ignore
 vector<T>[]: vector<T>vector<T>[e1,..., en]: vector<T>
 ```
 
 
 #### 4.1.1.1示例向量字面值
 
-```
+```move
 script {  fun example() {    (vector[]: vector<bool>);    (vector[0u8, 1u8, 2u8]: vector<u8>);    (vector<u128>[]: vector<u128>);    (vector<address>[@0x42, @0x100]: vector<address>);  }}
 ```
 
@@ -325,7 +325,7 @@ script {  fun example() {    (vector[]: vector<bool>);    (vector[0u8, 1u8, 2u8]
 
 #### 4.1.2.3 示例字符串字面值
 
-```rust
+```rust,ignore,ignore
 script {
   fun byte_and_hex_strings() {
     assert!(b"" == x"", 0);
@@ -374,7 +374,7 @@ script {
 
 示例
 
-```rust
+```rust,ignore,ignore
 script {
   use std::vector;
 
@@ -395,7 +395,7 @@ script {
 
 请注意，除非 `vec` 包含零个元素，否则 `vector::destroy_empty` 将在运行时导致程序终止：
 
-```rust
+```rust,ignore,ignore
 script {
   fun destroy_any_vector<T>(vec: vector<T>) {
     vector::destroy_empty(vec) // 删除此行将导致编译器错误
@@ -405,7 +405,7 @@ script {
 
 但对销毁包含具有 `drop` 的元素的向量不会发生错误：
 
-```rust
+```rust,ignore,ignore
 script {
   fun destroy_droppable_vector<T: drop>(vec: vector<T>) {
     // 有效！
@@ -427,7 +427,7 @@ on [type abilities](https://aptos.dev/en/build/smart-contracts/book/abilities)�
 
 `signer` 是 Move 内置的资源类型。`signer` 是一种 [能力](https://en.wikipedia.org/wiki/Object-capability_model)，允许持有者代表特定的 `address` 行事。您可以将原生实现视为：
 
-```rust
+```rust,ignore,ignore
 module 0x1::signer {  
 	struct signer has drop {
 		a: address 
@@ -441,7 +441,7 @@ module 0x1::signer {
 
 Move 程序可以使用地址字面值在没有特殊权限的情况下创建任何 `address` 值：
 
-```rust
+```rust,ignore,ignore
 script {
   fun example() {
     let a1 = @0x1;
@@ -453,7 +453,7 @@ script {
 
 然而，`signer` 值是特殊的，因为它们不能通过字面值或指令创建——只能由 Move VM 创建。在 VM 运行具有 `signer` 类型参数的脚本之前，它将自动创建 `signer` 值并将它们传递到脚本中：
 
-```rust
+```rust,ignore,ignore
 script {
     use std::signer;
     fun main(s: signer) {
@@ -466,7 +466,7 @@ script {
 
 只要 `signer` 是任何其他参数的前缀，Move 脚本就可以有任意数量的 `signer`。换句话说，所有的 `signer` 参数都必须排在前面：
 
-```rust
+```rust,ignore,ignore
 script {
     use std::signer;
     fun main(s1: signer, s2: signer, x: u64, y: u8) {
@@ -516,7 +516,7 @@ Move 提供了用于创建和扩展引用以及将可变引用转换为不可变
 
 `&e.f` 和 `&mut e.f` 操作符既可以用于创建对结构体的新引用，也可以用于扩展现有引用：
 
-```rust
+```rust,ignore,ignore
 script {
   fun example() {
     let s = S { f: 10 };
@@ -529,7 +529,7 @@ script {
 
 只要两个结构体在同一个模块中，具有多个字段的引用表达式就可以工作：
 
-```rust
+```rust,ignore,ignore
 module 0x42::example {
   struct A { b: B }
   struct B { c : u64 }
@@ -542,7 +542,7 @@ module 0x42::example {
 
 最后，请注意不允许引用的引用：
 
-```rust
+```rust,ignore,ignore
 script {
   fun example() {
     let x = 7;
@@ -567,7 +567,7 @@ script {
 
 为了读取引用，底层类型必须具有 [`copy` 能力](https://aptos.dev/en/build/smart-contracts/book/abilities)，因为读取引用会创建值的新副本。此规则防止资源值的复制：
 
-```rust
+```rust,ignore,ignore
 module 0x42::coin {
   struct Coin {} // Note does not have copy
  
@@ -582,7 +582,7 @@ module 0x42::coin {
 
 反之：为了写入引用，底层类型必须具有 [`drop` 能力](https://aptos.dev/en/build/smart-contracts/book/abilities)，因为写入引用会舍弃（或“释放”）旧值。此规则防止资源值的销毁：
 
-```rust
+```rust,ignore,ignore
 module 0x42::coin {
   struct Coin {} // Note does not have drop
  
@@ -598,7 +598,7 @@ module 0x42::coin {
 
 在期望不可变引用的上下文中可以使用可变引用：
 
-```rust
+```rust,ignore,ignore
 script {
   fun example() {
     let x = 7;
@@ -609,7 +609,7 @@ script {
 
 这是因为在幕后，编译器会在需要的地方插入 `freeze` 指令。以下是更多 `freeze` 推断实际应用的示例：
 
-```
+```move,ignore
 module 0x42::example {
   fun takes_immut_returns_immut(x: &u64): &u64 { x }
 
@@ -641,7 +641,7 @@ module 0x42::example {
 
 通过这种 `freeze` 推断，Move 类型检查器可以将 `&mut T` 视为 `&T` 的子类型。如上所示，这意味着在任何使用 `&T` 值的表达式中，也可以使用 `&mut T` 值。此术语用于错误消息中，以简洁地指示在提供 `&T` 的地方需要 `&mut T` 。例如
 
-```
+```move
 module 0x42::example {
   fun read_and_assign(store: &mut u64, new_value: &u64) {
     *store = *new_value
@@ -662,7 +662,7 @@ module 0x42::example {
 
 将产生以下错误消息
 
-```
+```move
 error:
  
     ┌── example.move:12:9 ───
@@ -698,7 +698,7 @@ error:
 
 即使存在相同引用的现有副本或扩展，可变引用和不可变引用始终可以被复制和扩展：
 
-```
+```move
 script {
   fun reference_copies(s: &mut S) {
     let s_copy1 = s; // 可以
@@ -743,7 +743,7 @@ Move 并不像人们从其他具有元组作为一等值的语言中所期望的
 
 ### 7.1.1 示例
 
-```rust
+```rust,ignore,ignore
 module 0x42::example {
   // 这三个函数都是等价的
 
@@ -776,7 +776,7 @@ module 0x42::example {
 
 例如：
 
-```
+```move,ignore
 module 0x42::example {
   // 这三个函数是等价的
   fun returns_unit() {}
@@ -813,7 +813,7 @@ module 0x42::example {
 
 例如：
 
-```
+```rust,ignore
 script {
   fun example() {
     let x: &u64 = &0;
@@ -840,7 +840,7 @@ script {
 
 
 测试代码
-```rust
+```rust,ignore,ignore
 module base::test{
 
     #[test_only]
@@ -1015,7 +1015,7 @@ const EFALSE:u64 = 1;
 
 
 
-```rust
+```rust,ignore,ignore
 module 0x42::example {
 	 #[test_only]
     use std::string;

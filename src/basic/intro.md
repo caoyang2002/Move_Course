@@ -6,7 +6,7 @@
 
 1. 创建一个目录
 
-    ```bash
+    ```bash,ignore
     mkdir hello_world
     ```
 
@@ -26,22 +26,22 @@
     > }
     > ```
     > - Move 程序的配置文件
-    > 
+    >
     > ```toml
     > [package]
     > name = "hello_move"
     > version = "1.0.0"
     > authors = []
-    > 
+    >
     > [addresses]
-    > 
+    >
     > [dev-addresses]
-    > 
+    >
     > [dependencies.AptosFramework]
     > git = "https://github.com/aptos-labs/aptos-core.git"
     > rev = "mainnet"
     > subdir = "aptos-move/framework/aptos-framework"
-    > 
+    >
     > [dev-dependencies]
     > ```
 
@@ -80,20 +80,20 @@
 4. 写入程序代码
 
     ```bash
-    cd sources 
+    cd sources
     # 可以使用任何编辑软件写入
-    # vim hello_move.move 
+    # vim hello_move.move
     ```
 
     - 写入
 
-        ```rust
+        ```move,ignore
         module 0x42::hello {
             #[test_only]
             use std::string;
             #[test_only]
             use std::debug::print;
-        
+
             #[test]
             fun test() {
                 let hello = string::utf8(b"hello_world");
@@ -101,9 +101,9 @@
             }
         }
         ```
-    
+
     - 测试
-      
+
         > ```json
         > caoyang@cccy hello_world % aptos move test
         > INCLUDING DEPENDENCY AptosFramework
@@ -124,7 +124,7 @@
 
 
 > 可能遇到的问题：
-> 
+>
 >- 网络问题
 >
 > ```json
@@ -133,7 +133,7 @@
 >   "Error": "Unexpected error: Failed to run tests: Unable to resolve packages for package 'hello_move': While resolving dependency 'AptosFramework' in package 'hello_move': Failed to fetch to latest Git state for package 'AptosFramework', to skip set --skip-fetch-latest-git-deps | Exit status: exit status: 128"
 > }
 > ```
-> 
+>
 > 解决方法：
 >
 > 1. 切换为能访问 GitHub 的网络
@@ -149,6 +149,3 @@
 >     rev = "mainnet"
 >     subdir = "aptos-move/framework/aptos-framework"
 >    ```
-
-
-

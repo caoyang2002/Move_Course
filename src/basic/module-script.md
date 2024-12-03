@@ -10,7 +10,7 @@ Move 有两种不同类型的程序：**模块**和**脚本**。
 # 1. 脚本
 脚本具有以下结构：
 
-```rust
+```move,ignore
 script {
     <use>*
     <constants>*
@@ -21,7 +21,7 @@ script {
 
 脚本必须以 `use` 声明开头，然后是常量，最后是 `main` 函数声明。`main` 函数的名称并不必须是 “main”名称，它是脚本中唯一的函数，可以有任意数量的参数，并且不能有返回值。这里有一个包含这些规则的示例：
 
-```rust
+```move,ignore
 script {
     // 导入在名为std的账户地址下发布的调试模块。
     use std::debug;
@@ -41,7 +41,7 @@ script {
 
 模块具有以下语法：
 
-```rust
+```move,ignore
 module <address>::<identifier> { // 这里的 <address> 是一个有效的地址
     (<use> | <friend> | <type> | <function> | <constant>)*
 }
@@ -51,7 +51,7 @@ module <address>::<identifier> { // 这里的 <address> 是一个有效的地址
 
 例如：
 
-```rust
+```move,ignore
 module 0x42::example { // 字面量地址
     struct Example has copy, drop { i: u64 }
    
@@ -72,7 +72,7 @@ module 0x42::example { // 字面量地址
 
 模块也可以使用命名地址声明。例如：
 
-```rust
+```move,ignore
 module example_addr::example {
     struct Example has copy, drop { a: address }
    
@@ -88,7 +88,7 @@ module example_addr::example {
 
 由于命名地址仅在源语言级别和编译期间存在，命名地址将在字节码级别完全替换为它们实际的字面量值。例如，如果我们有以下代码：
 
-```rust
+```move,ignore
 script {
     fun example() {
         my_addr::m::foo(@my_addr); // 在编译时 my_addr 会被替换为字面量地址
@@ -98,7 +98,7 @@ script {
 
 并且我们将 `my_addr` 设置为 `0xC0FFEE` 进行编译，那么它在操作上等同于以下操作：
 
-```rust
+```move,ignore
 script {
     fun example() {
         0xC0FFEE::m::foo(@0xC0FFEE); // 字面量地址
@@ -111,7 +111,7 @@ script {
 
 模块名称只能以字母 `a` 到 `z` 或 `A` 到 `Z` 作为开头。在第一个字符之后，模块名称可以包含下划线 `_`、字母 `a` 到 `z` 、字母 `A` 到 `Z` 或数字 `0` 到 `9`
 
-```rust
+```move,ignore
 module my_module {}
 module foo_bar_42 {}
 module f_4{}
