@@ -4,7 +4,7 @@
 
 [RustRover](https://www.jetbrains.com/zh-cn/rust/buy/?section=personal&billing=yearly) 也可以，但是需要登录，IDEA 不需要登录
 
-> 其他也可以使用 VSCode、Cursor 等，但是不推荐 zed，因为它没有任何 Move 语言相关的功能，包括语法高亮。
+> 其他也可以使用 VSCode、Cursor 等，但是不推荐 zed，因为它没有任何 Move 语言相关的功能，包括语法高亮，（我尝试开发过 Zed 的 Move 插件，但是能力不够，社区对我的开发也好像不太有帮助，所以放弃了 ......）
 
 本教程是基于 Aptos 制作的，所以后续的应用代码主要是 Move-Aptos，但是会附加介绍 Move-Sui、Move-Rooch 等。
 

@@ -2,6 +2,8 @@
 
 ![move](../img/move_language.png)
 
+> 说明：本书基于 [Rust_Course](https://course.rs/about-book.html) 构建，所以很多结构都是借鉴（抄）的，我甚至 mdbook 都是 fork 的他们，感谢原作者的创作以及开源精神。
+
 Move 是一门为可编程资源而生的语言，它的主要目的是为了创建一种新的编程范式，这种范式可以让我们在编写程序时，更加关注资源的管理和安全性。主要的应用场景是在区块链中，用于创建和管理智能合约。
 
 
@@ -36,7 +38,7 @@ Diem 是 Facebook 开发的一个开源区块链项目，它使用 Move 语言�
 
 ## 🏆 贡献者
 
-非常感谢本教程的[所有贡献者](https://github.com/sunface/Move_Course/graphs/contributors)，正是有了你们，才有了现在的高质量 Move 教程!
+非常感谢本教程的[所有贡献者](https://github.com/caoyang2002/Move_Course/graphs/contributors)，正是有了你们，才有了现在的高质量 Move 教程!
 
 <br />
 
