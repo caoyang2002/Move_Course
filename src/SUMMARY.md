@@ -22,9 +22,16 @@
   - [模块和脚本](basic/module-script.md)
 
   - [变量绑定与解构](basic/variable.md)
-  - [基本类型](basic/base-type/index.md)
-    - [数值类型](basic/base-type/numbers.md)
-    - [字符、布尔、单元类型](basic/base-type/char-bool.md)
+  - [原始类型](basic/primitive-types/intro.md)
+    - [整数](basic/primitive-types/integers.md)
+    - [地址](basic/primitive-types/address.md)
+    - [向量](basic/primitive-types/vector.md)
+    - [签名](basic/primitive-types/signer.md)
+    - [引用](basic/primitive-types/references.md)
+    - [元组与单元](basic/primitive-types/tuple-unit.md)
+
+  - [基本概念](basic-concepts/intro.md)
+
     - [Move.toml 格式讲解](basic/move-toml.md)
 
 

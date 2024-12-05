@@ -23,7 +23,7 @@ Move 支持六种无符号整数类型：`u8`、`u16`、`u32`、`u64`、`u128`�
 
 ### 示例
 
-```rust
+```move
 script {
   fun example() {
     // literals with explicit annotations;

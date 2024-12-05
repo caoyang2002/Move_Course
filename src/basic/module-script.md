@@ -11,7 +11,7 @@ Move 有两种不同类型的程序：**模块**和**脚本**。
 # 1. 脚本
 脚本具有以下结构：
 
-```move,ignore
+```move
 script {
     <use>*
     <constants>*
@@ -99,7 +99,7 @@ script {
 
 并且我们将 `my_addr` 设置为 `0xC0FFEE` 进行编译，那么它在操作上等同于以下操作：
 
-```move,ignore
+```move
 script {
     fun example() {
         0xC0FFEE::m::foo(@0xC0FFEE); // 字面量地址
