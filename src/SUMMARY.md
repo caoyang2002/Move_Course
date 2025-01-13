@@ -17,10 +17,9 @@
   - [各大 Move 流派](first-try/move-self.md)
 
 - [Move 基础入门](basic/intro.md)
-  - [认识 Move 命令行工具](first-try/move-cli.md)
-  - [Hello,Blockchain](first-try/hello-blockchain.md)
+  - [认识 Move 命令行工具](basic/move-cli.md)
+  - [Hello,Blockchain](basic/hello-blockchain.md)
   - [模块和脚本](basic/module-script.md)
-
   - [变量绑定与解构](basic/variable.md)
   - [原始类型](basic/primitive-types/intro.md)
     - [整数](basic/primitive-types/integers.md)
